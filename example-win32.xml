@@ -1,0 +1,57 @@
+<configuration>
+	<settings>
+		<portal_url>http://localhost/portsensor/post</portal_url>
+		<monitor_guid>win32.monitor</monitor_guid>
+		<secret_key>XXXX</secret_key>
+	</settings>
+
+	<!-- Local.Server -->
+	<device id="local.server">
+		<sensor>
+			<name>HTTP</name>
+			<command>#PORT google.com 80</command>
+			<type>string</type>
+			<critical oper="eq" value="DOWN">Critical</critical>
+		</sensor>
+		<sensor>
+			<name>Disk Used (C:)</name>
+			<command>#DF C:</command>
+			<type>percent</type>
+			<warning oper="gt" value="80">Low Disk</warning>
+			<critical oper="gt" value="90">Critical Disk</critical>
+		</sensor>
+		<sensor>
+			<name>Load</name>
+			<command>#LOAD</command>
+			<type>decimal</type>
+			<warning oper="gt" value="5.0">Moderate Load</warning>
+			<critical oper="gt" value="15.0">High Load</critical>
+		</sensor>
+		<sensor>
+			<name>Who's Online</name>
+			<command>#WHO</command>
+			<type>text</type>
+		</sensor>
+		<sensor>
+			<name>Top Processes (Mem)</name>
+			<command>#PS mem</command>
+			<type>text</type>
+		</sensor>
+		<sensor>
+			<name>Top Processes (CPU)</name>
+			<command>#PS cpu</command>
+			<type>text</type>
+		</sensor>
+		<sensor>
+			<name>Top Processes (Time)</name>
+			<command>#PS time</command>
+			<type>text</type>
+		</sensor>
+		<!--
+		<sensor>
+			<name>Ping</name>
+			<command>ping -n 1 localhost | find "Average ="</command>
+		</sensor>
+		-->
+	</device>
+</configuration>
